@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        @media screen and (max-width: 700px) {
+            div.fi {
+                font-size: 100%;
+            }
+            div.fo{
+                font-size: 200%;
+            }
+        }
+
+        @media screen and (max-width: 300px) {
+            div.fi {
+                font-size: 50%;
+            }
+            div.fo{
+                font-size: 100%;
+            }
+        }
+
+        body {
+            background-color: black;
+
+        }
+
+        
+        .container {
+            margin: 10% auto;
+            padding: 1%;
+            display: flex;
+            justify-content: space-around;
+            border: 1vw solid rgb(50, 35, 167);
+            width: 55%;
+            border-radius: 2vw;
+            background-color: rgb(71, 178, 142);
+            color: antiquewhite;
+        }
+        
+        .gap {
+            position: relative;
+            top: -1vw;
+            
+        }
+        
+        .m {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mday {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .fo {
+            font-size: 500%;
+        }
+        
+        .fi {
+            font-size: 200%;
+        }
+        
+        .box {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <div id="hour" class="fo">
+
+            </div>
+            <div class="gap fo">
+                <p>:</p>
+            </div>
+            <div id="minute" class="fo">
+
+            </div>
+            <div class="gap fo">
+                <p>:</p>
+            </div>
+            <div id="second" class=" fo">
+
+            </div>
+            <div id="ap" class="fi">
+    
+            </div>
+        </div>
+        <div class="m fi">
+            <div class="mday">
+                <div id="day">
+
+                </div>
+            </div>
+            <div id="date">
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        setInterval(() => {
+            d = new Date();
+            htime = d.getHours();
+            mtime = d.getMinutes();
+            stime = d.getSeconds();
+            s = 'AM';
+            da = d.getDay();
+            yer = d.getFullYear();
+            mon = d.getMonth();
+            dt = d.getDate();
+            var dee;
+            if (da == 0) {
+                dee = 'SUN';
+            }
+            else if (da == 1) {
+                dee = 'MON';
+            }
+            else if (da == 2) {
+                dee = 'TUE';
+            }
+            else if (da == 3) {
+                dee = 'WED';
+            }
+            else if (da == 4) {
+
+                dee = 'THU';
+            }
+            else if (da == 5) {
+                dee = 'FRI';
+            }
+            else if (da == 6) {
+                dee = 'SAT';
+            }
+
+
+            if (htime > 12) {
+                s = 'PM';
+                htime = htime - 12;
+            }
+            if (htime < 10) {
+
+                document.getElementById('hour').innerHTML = '0' + htime;
+            }
+            else {
+                document.getElementById('hour').innerHTML = htime;
+
+            }
+            if (mtime < 10) {
+
+                document.getElementById('minute').innerHTML = '0' + mtime;
+            }
+            else {
+
+                document.getElementById('minute').innerHTML = mtime;
+            }
+            if (stime < 10) {
+
+                document.getElementById('second').innerHTML = '0' + stime;
+            }
+            else {
+                document.getElementById('second').innerHTML = stime;
+
+            }
+            document.getElementById('ap').innerHTML = s;
+            document.getElementById('day').innerHTML = dee;
+            console.log(dee);
+            document.getElementById('date').innerHTML = dt + '/' + mon + '/' + yer;
+
+        }, 1000);
+    </script>
+</body>
+
+</html>
